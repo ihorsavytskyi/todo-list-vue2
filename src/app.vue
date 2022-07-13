@@ -4,10 +4,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link to="/" class="nav-link">{{ t("home") }}</router-link>
+            <router-link to="/" class="nav-link">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/about" class="nav-link">{{ t("about") }}</router-link>
+            <router-link to="/about" class="nav-link">About</router-link>
           </li>
         </ul>
       </div>
@@ -16,38 +16,18 @@
   </div>
 </template>
 
-<i18n>
-  'en': {
-    home: 'Home',
-    about : 'About',
-  },
-  'fr' : {
-    home : 'La maison',
-    about : 'Environ',
-  }
-</i18n>
-
 <script>
-
 export default {
   name: 'App',
-  data () {
-    return {
-      locale: 'en'
-    },
-  },  
-  watch: {
-    locale (val) {
-      this.$i18n.locale = val
-    }
-  }
-}
+};
 </script>
 
 <style>
 </style>
 <script>
-export default {};
+export default {
+
+};
 </script>
 
 <style lang="less" scoped>
