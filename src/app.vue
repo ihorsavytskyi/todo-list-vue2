@@ -1,5 +1,13 @@
 <template>
-  <div>
+  <v-app>
+  <!-- Must have the app property -->
+  <v-app-bar app></v-app-bar>
+
+  <v-main>
+    Hello World
+  </v-main>
+</v-app>
+  <!--<div>
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
@@ -13,7 +21,7 @@
       </div>
     </nav>
     <router-view></router-view>
-  </div>
+  </div>-->
 </template>
 
 <script>
