@@ -1,32 +1,43 @@
 <template>
   <v-app>
-  <!-- Must have the app property -->
-  <v-app-bar app></v-app-bar>
-
-  <v-main>
-    Hello World
-  </v-main>
-</v-app>
-  <!--<div>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/about" class="nav-link">About</router-link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <router-view></router-view>
-  </div>-->
+    <!--<v-app-bar color="blue" elevation app>
+      <v-toolbar-title>Todo test task</v-toolbar-title>
+    </v-app-bar>
+    <navbarVueComponent/>-->
+    <v-container>
+      <router-view/>
+    </v-container>
+    <!--<v-footer padless>
+    <v-col
+      class="text-center"
+      cols="12"
+    >
+      {{ new Date().getFullYear() }} — <strong>Todo test task</strong>
+    </v-col>
+  </v-footer>
+    <footerVue/>-->
+  </v-app>
 </template>
 
 <script>
+import Vue from 'vue';
+import vuetify from './plugins/vuetify';
+/*import navbarVueComponent from './components/navbar.vue';
+import footerVue from './components/footer.vue';*/
+
+Vue.use(vuetify);
+
 export default {
   name: 'App',
+  /*components: {
+    navbarVueComponent,
+    footerVue,
+  },*/
+  computed: {
+    getTodoList() {
+      return this.store.getters.getTodoList;
+    },
+  },
 };
 </script>
 

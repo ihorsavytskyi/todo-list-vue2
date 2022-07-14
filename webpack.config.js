@@ -32,6 +32,14 @@ module.exports = {
         ],
       },
       {
+        test: /\.sass$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
         resourceQuery: /blockType=i18n/,
         type: 'javascript/auto',
         loader: '@intlify/vue-i18n-loader',
