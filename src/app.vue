@@ -1,42 +1,57 @@
 <template>
   <v-app>
-    <!--<v-app-bar color="blue" elevation app>
-      <v-toolbar-title>Todo test task</v-toolbar-title>
-    </v-app-bar>
-    <NavbarEl/>-->
-    <v-container>
-      <router-view/>
-    </v-container>
-    <!--<v-footer padless>
-    <v-col
-      class="text-center"
-      cols="12"
-    >
-      {{ new Date().getFullYear() }} — <strong>Todo test task</strong>
-    </v-col>
-  </v-footer>
-    <footerVue/>-->
+    <nav>
+      <v-app-bar color="deep-purple accent-4" dark>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title>Todo</v-toolbar-title>
+      </v-app-bar>
+      <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+        <v-list>
+          <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
+            <v-list-item-action-text>
+              {{ link.text }}
+              <!--<v-list-item-content>
+                <v-list-item-title>
+                  
+                </v-list-item-title>
+              </v-list-item-content>-->
+            </v-list-item-action-text>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+    </nav>
+    <v-main>
+      <v-container fluid>
+        <router-view />
+      </v-container>
+    </v-main>
+    <v-footer padless>
+      <v-col class="text-center" cols="12" >
+        {{ new Date().getFullYear() }} — <strong>Todo test task</strong>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-/*import NavbarEl from './components/navbar.vue';
-import footerVue from './components/footer.vue';*/
+import Navbar from "./components/navbar.vue";
 
 export default {
   name: 'App',
-  /*components: {
-    NavbarEl,
-    footerVue,
+  data() {
+    return {
+      drawer: false,
+      links: [
+        { text: 'Home', route: '/' },
+        { text: 'About', route: '/about' },
+      ],
+    };
+  },
+  /*watch: {
+    drawer() {
+      this.drawer = false;
+    },
   },*/
-};
-</script>
-
-<style>
-</style>
-<script>
-export default {
-
 };
 </script>
 

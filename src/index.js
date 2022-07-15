@@ -6,9 +6,9 @@ import vuetify from './plugins/vuetify';
 
 new Vue({
 	el: "#app",
-	router: router,
-	store: store,
-	vuetify: vuetify,
+	router,
+	store,
+	vuetify,
 	render: 
 	  (h) => h(App)
 });

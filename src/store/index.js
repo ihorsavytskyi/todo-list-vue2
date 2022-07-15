@@ -31,13 +31,16 @@ export default new Vuex.Store({
   },
   getters: {
     getTodoList(state) {
-      return state.todos;
+      return state.todos.filter((todo) => !todo.complited);
     },
     thisTodo(state, todoId) {
       return state.todos.find((todo) => todo.id === todoId);
     },
     getComplitedItems(state) {
       return state.todos.filter((todo) => !!todo.complited);
+    },
+    getComlitedTodoItemsCount() {
+      return this.getters.getComplitedItems.length;
     },
   },
   mutations: {

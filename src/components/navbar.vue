@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'NavbarEl',
+  name: 'NavbarVue',
 };
 </script>
 

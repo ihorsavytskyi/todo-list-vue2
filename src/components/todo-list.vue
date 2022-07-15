@@ -1,6 +1,6 @@
 <template>
   <div id="current-todos" class="container">
-        <h3 v-if="todos.length > 0">Current({{todoListLenght}})</h3>
+        <h3 v-if="todoListLenght > 0">Current : {{ todoListLenght }}</h3>
         <div v-if="todoListLenght === 0">
           <p>Sorry but todo list is empty</p>
         </div>
@@ -13,6 +13,7 @@
             </v-list-tile>
           </v-list>
         </div>
+        <h3>Completed : {{ todoCompleted }}</h3>
     </div>
 </template>
 
@@ -25,15 +26,15 @@ Vue.use(vuetify);
 
 export default {
   name: 'TodoList',
-  /*component: {
-    'todo-item': todoItem,
-  },*/
   computed: {
     todos() {
       return this.$store.getters.getTodoList;
     },
     todoListLenght() {
       return this.$store.getters.getTodoList.length;
+    },
+    todoCompleted() {
+      return this.$store.getters.getComlitedTodoItemsCount;
     },
   },
 };
