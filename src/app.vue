@@ -3,7 +3,7 @@
     <!--<v-app-bar color="blue" elevation app>
       <v-toolbar-title>Todo test task</v-toolbar-title>
     </v-app-bar>
-    <navbarVueComponent/>-->
+    <NavbarEl/>-->
     <v-container>
       <router-view/>
     </v-container>
@@ -20,24 +20,15 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import vuetify from './plugins/vuetify';
-/*import navbarVueComponent from './components/navbar.vue';
+/*import NavbarEl from './components/navbar.vue';
 import footerVue from './components/footer.vue';*/
-
-Vue.use(vuetify);
 
 export default {
   name: 'App',
   /*components: {
-    navbarVueComponent,
+    NavbarEl,
     footerVue,
   },*/
-  computed: {
-    getTodoList() {
-      return this.store.getters.getTodoList;
-    },
-  },
 };
 </script>
 

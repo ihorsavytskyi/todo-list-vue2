@@ -5,30 +5,29 @@
           <p>Sorry but todo list is empty</p>
         </div>
         <div v-else>
-          <ul class="list-group">
-            <li v-for="todo in todos" :key="todo.id">
-                {{todo.name}}
-              <div class="btn-group">
-                  <button type="button" @click="edit(todo)" class="btn btn-default btn-sm">
-                  <span class="glyphicon glyphicon-edit"></span> Edit
-                  </button>
-                  <button type="button" @click="complete(todo)" class="btn btn-default btn-sm">
-                  <span class="glyphicon glyphicon-ok-circle"></span> Complete
-                  </button>
-                  <button type="button" @click="remove(todo)" class="btn btn-default btn-sm">
-                  <span class="glyphicon glyphicon-remove-circle"></span> Remove
-                  </button>
-              </div>
-            </li>
-        </ul>
+          <v-list v-for="todo in todos" :key="todo.id">
+            <v-list-tile>
+              <v-list-item-content>
+                  {{ todo.name }}
+              </v-list-item-content>
+            </v-list-tile>
+          </v-list>
         </div>
     </div>
 </template>
 
 <script>
+//import todoItem from './todo-item.vue';
+import Vue from 'vue';
+import vuetify from '../plugins/vuetify';
+
+Vue.use(vuetify);
 
 export default {
   name: 'TodoList',
+  /*component: {
+    'todo-item': todoItem,
+  },*/
   computed: {
     todos() {
       return this.$store.getters.getTodoList;
