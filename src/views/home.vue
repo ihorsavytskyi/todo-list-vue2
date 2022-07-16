@@ -1,20 +1,11 @@
 <template>
   <v-container>
-    <h3>Add new action</h3>
+    <h3>Add new todo item</h3>
     <v-container>
       <v-form>
-        <v-text-field
-          v-model="newTodoItem"
-          label="New todo item"
-          @keydown.enter="addTodo()"
-          >
+        <v-text-field v-model="newTodoItem" label="New todo item" @keydown.enter="addTodo()">
         </v-text-field>
-        <v-btn
-          rounded
-          color="primary"
-          dark
-          @click="addTodo()"
-        >
+        <v-btn rounded color="primary" dark @click="addTodo()">
           Add
         </v-btn>
       </v-form>
@@ -47,7 +38,7 @@
                       mdi-pencil
                   </v-icon>
                   </v-btn>
-                  <v-btn class="ma-2" color="red" dark @click="remove(todo)">
+                  <v-btn class="ma-2" color="red" dark @click="removeItem(todo)">
                     Remove
                     <v-icon dark right>
                       mdi-cancel
@@ -97,22 +88,23 @@ export default {
       newTodoItem: '',
     };
   },
-  computed:
-    mapGetters(['getTodoList', 'getComplitedItems', 'getComlitedTodoItemsCount']),
+  computed: {
+    ...mapGetters(['getTodoList', 'getComplitedItems', 'getComlitedTodoItemsCount']),
+    getNewTodo() {
+      return this.$store.newItem;
+    }
+  },
   methods: {
     edit(todo) {
       console.log('edit :', todo.id);
     },
-    remove(todo) {
-      console.log('remove :', todo.id);
-      this.$store.dispatch('addTodo');
+    removeItem(todo) {
+      this.$store.dispatch('deleteTodo', todo);
     },
     сomplete(todo) {
-      console.log('complete :', todo.id);
       this.$store.dispatch('completedTodo', todo);
     },
     returnItem(todo) {
-      console.log('returnTodo :', todo.id);
       this.$store.dispatch('returnTodo', todo);
     },
     addTodo() {
@@ -122,3 +114,12 @@ export default {
   },
 };
 </script>
+
+<style lang="less" scoped>
+  .v-list {
+    flex: 0 0 50%;
+    .v-card {
+      max-width: none!important;
+    }
+  }
+</style>
