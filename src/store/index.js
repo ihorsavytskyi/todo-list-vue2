@@ -7,27 +7,26 @@ export default new Vuex.Store({
   state: {
     todos: [
       {
-        id: '1',
+        id: 1,
         name: 'Action 1',
         complited: false,
       },
       {
-        id: '2',
+        id: 2,
         name: 'Action 2',
         complited: false,
       },
       {
-        id: '3',
+        id: 3,
         name: 'Action 3',
         complited: false,
       },
       {
-        id: '4',
+        id: 4,
         name: 'Action 4',
         complited: true,
       },
     ],
-    newTodoItem: '',
   },
   getters: {
     getTodoList(state) {
@@ -44,17 +43,27 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    addTodoItem() {},
+    addTodoItem(state, newItem) {
+      state.todos.push({
+        id: state.todos[state.todos.length - 1].id + 1,
+        name: newItem,
+        complited: false,
+      });
+    },
     updateTodoItem() {},
     deleteTodoItem() {},
-    completedTodoItem() {},
-    clearTodoItem() {
-      this.state.newTodoItem = '';
+    completedTodoItem(state, currentItem) {
+      const targetEl = state.todos.filter((el) => el.id === currentItem.id);
+      targetEl[0].complited = !targetEl.complited;
+    },
+    returnStateTodoItem(state, currentItem) {
+      const targetEl = state.todos.filter((el) => el.id === currentItem.id);
+      targetEl[0].complited = !targetEl.complited;
     },
   },
   actions: {
-    addTodo({ commit }) {
-      commit('addTodoItem');
+    addTodo({ commit }, item) {
+      commit('addTodoItem', item);
     },
     updateTodo({ commit }, item) {
       commit('updateTodoItem', item);
@@ -64,6 +73,9 @@ export default new Vuex.Store({
     },
     completedTodo({ commit }, item) {
       commit('completedTodoItem', item);
+    },
+    returnTodo({ commit }, item) {
+      commit('returnStateTodoItem', item);
     },
     clearTodo({ commit }) {
       commit('clearTodoItem');
