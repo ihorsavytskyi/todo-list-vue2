@@ -51,14 +51,17 @@ export default new Vuex.Store({
       });
     },
     updateTodoItem() {},
-    deleteTodoItem() {},
+    deleteTodoItem(state, itemToDelete) {
+      const newTodos = state.todos.filter((el) => el.id !== itemToDelete.id);
+      this.state.todos = [...newTodos];
+    },
     completedTodoItem(state, currentItem) {
-      const targetEl = state.todos.filter((el) => el.id === currentItem.id);
-      targetEl[0].complited = !targetEl.complited;
+      const targetEl = state.todos.filter((el) => el.id === currentItem.id)[0];
+      targetEl.complited = !targetEl.complited;
     },
     returnStateTodoItem(state, currentItem) {
-      const targetEl = state.todos.filter((el) => el.id === currentItem.id);
-      targetEl[0].complited = !targetEl.complited;
+      const targetEl = state.todos.filter((el) => el.id === currentItem.id)[0];
+      targetEl.complited = !targetEl.complited;
     },
   },
   actions: {
