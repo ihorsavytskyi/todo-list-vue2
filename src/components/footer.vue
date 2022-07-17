@@ -12,7 +12,7 @@
 <script>
 
 export default ({
-  name: 'footerVue',
+  name: 'FooterBar',
 });
 </script>
 

@@ -1,46 +1,29 @@
 <template>
   <v-app>
-    <nav>
-      <v-app-bar color="deep-purple accent-4" dark>
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>Todo</v-toolbar-title>
-      </v-app-bar>
-      <v-navigation-drawer v-model="drawer" absolute bottom temporary>
-        <v-list>
-          <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
-            <v-list-item-action-text>
-              {{ link.text }}
-            </v-list-item-action-text>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-    </nav>
+    <TopNavbar />
     <v-main>
       <v-container fluid>
         <router-view />
       </v-container>
     </v-main>
-    <v-footer padless>
-      <v-col class="text-center" cols="12" >
-        {{ new Date().getFullYear() }} — <strong>Todo test task</strong>
-      </v-col>
-    </v-footer>
+    <FooterBar />
   </v-app>
 </template>
 
 <script>
-import Navbar from "./components/navbar.vue";
+import TopNavbar from './components/navbar.vue';
+import FooterBar from './components/footer.vue';
 
 export default {
   name: 'App',
   data() {
     return {
-      drawer: false,
-      links: [
-        { text: 'Home', route: '/' },
-        { text: 'About', route: '/about' },
-      ],
+
     };
+  },
+  components: {
+    TopNavbar,
+    FooterBar,
   },
 };
 </script>
