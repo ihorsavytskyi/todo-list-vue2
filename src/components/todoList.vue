@@ -10,7 +10,6 @@
     </v-container>
     <div class="todo-list" v-else>
       <v-list v-for="todo in getTodoList" :key="todo.id">
-        <TodoItem :data="todo" :key="todo.id"/>
         <v-list-item>
           <v-list-item-content class="pa-1">
             <v-card class="mx-auto my-1" max-width="374">
@@ -56,7 +55,7 @@
   },
   "ua": {
     "text1": "Необхідно зробити",
-    "text2": "Вибачте, але список завдань до виконання порожний",
+    "text2": "Вибачте, але список завдань до виконання порожній",
     "button1": "Виконано",
     "button2": "Змінити",
     "button3": "Видалити"

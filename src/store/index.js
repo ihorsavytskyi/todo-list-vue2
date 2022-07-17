@@ -48,8 +48,8 @@ export default new Vuex.Store({
       });
     },
     updateTodoItem() {},
-    deleteTodoItem(state, itemToDelete) {
-      const todoItemIndexToRemove = state.todos.findIndex((el) => el.id !== itemToDelete.id);
+    deleteTodoItem(state, currentItem) {
+      const todoItemIndexToRemove = state.todos.findIndex((el) => el.id !== currentItem.id);
       state.todos.splice(todoItemIndexToRemove, 1);
     },
     completedTodoItem(state, currentItem) {
