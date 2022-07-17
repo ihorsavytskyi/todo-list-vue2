@@ -1,0 +1,83 @@
+<template>
+  <v-list-item>
+    <v-list-item-content class="pa-1">
+      <v-card class="mx-auto my-1" max-width="374">
+        <v-card-title>
+          {{ data.name }}
+        </v-card-title>
+        <v-card-text>
+          {{ data.id }} - {{ data.completed }}
+        </v-card-text>
+        <v-card-actions>
+          <v-btn class="ma-2" color="primary" dark @click="сomplete()">
+            {{ $t('button1') }}
+            <v-icon dark right>
+              mdi-checkbox-marked-circle
+            </v-icon>
+          </v-btn>
+          <v-btn dark class="success" text @click="edit()">
+            {{ $t('button2') }}
+            <v-icon dark right>
+              mdi-pencil
+          </v-icon>
+          </v-btn>
+          <v-btn class="ma-2" color="red" dark @click="removeItem()">
+            {{ $t('button3') }}
+            <v-icon dark right>
+              mdi-cancel
+            </v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-list-item-content>
+  </v-list-item>
+</template>
+
+<i18n>
+{
+  "en": {
+    "button1": "Done",
+    "button2": "Edit",
+    "button3": "Remove"
+  },
+  "ua": {
+    "button1": "Виконано",
+    "button2": "Змінити",
+    "button3": "Видалити"
+  }
+}
+</i18n>
+
+<script>
+import { mapActions } from 'vuex';
+
+export default {
+  name: 'TodoItem',
+  props: {
+    data: {
+      id: Number,
+      name: String,
+      completed: Boolean,
+    },
+  },
+  methods: {
+    mapActions(['deleteTodo', 'completedTodo']),
+    /*edit() {
+      console.log('edit :', this.$props.data.id);
+    },
+    removeItem() {
+      this.$store.dispatch('deleteTodo', this.$props.data.id);
+    },
+    сomplete() {
+      console.log('complete :', this.$props.data.id, this.$props.data.completed);
+      //this.$store.dispatch('completedTodo', this.$props.data.id);
+    },
+  },*/
+};
+</script>
+
+<style scoped>
+.v-card {
+  max-width: none!important;
+}
+</style>

@@ -9,37 +9,34 @@ export default new Vuex.Store({
       {
         id: 1,
         name: 'Action 1',
-        complited: false,
+        completed: false,
       },
       {
         id: 2,
         name: 'Action 2',
-        complited: false,
+        completed: false,
       },
       {
         id: 3,
         name: 'Action 3',
-        complited: false,
+        completed: false,
       },
       {
         id: 4,
         name: 'Action 4',
-        complited: true,
+        completed: true,
       },
     ],
   },
   getters: {
     getTodoList(state) {
-      return state.todos.filter((todo) => !todo.complited);
+      return state.todos.filter((todo) => !todo.completed);
     },
     thisTodo(state, todoId) {
       return state.todos.find((todo) => todo.id === todoId);
     },
     getComplitedItems(state) {
-      return state.todos.filter((todo) => !!todo.complited);
-    },
-    getComlitedTodoItemsCount() {
-      return this.getters.getComplitedItems.length;
+      return state.todos.filter((todo) => !!todo.completed);
     },
   },
   mutations: {
@@ -52,16 +49,16 @@ export default new Vuex.Store({
     },
     updateTodoItem() {},
     deleteTodoItem(state, itemToDelete) {
-      const newTodos = state.todos.filter((el) => el.id !== itemToDelete.id);
-      state.todos = newTodos;
+      const todoItemIndexToRemove = state.todos.findIndex((el) => el.id !== itemToDelete.id);
+      state.todos.splice(todoItemIndexToRemove, 1);
     },
     completedTodoItem(state, currentItem) {
       const targetEl = state.todos.filter((el) => el.id === currentItem.id)[0];
-      targetEl.complited = !targetEl.complited;
+      targetEl.completed = !targetEl.completed;
     },
     returnStateTodoItem(state, currentItem) {
       const targetEl = state.todos.filter((el) => el.id === currentItem.id)[0];
-      targetEl.complited = !targetEl.complited;
+      targetEl.completed = !targetEl.completed;
     },
     /*clearNewTodo(state) {
       state.newTodo = '';
