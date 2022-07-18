@@ -53,16 +53,29 @@ export default new Vuex.Store({
       state.todos.splice(todoItemIndexToRemove, 1);
     },
     completedTodoItem(state, currentItem) {
-      const targetEl = state.todos.filter((el) => el.id === currentItem.id)[0];
-      targetEl.completed = !targetEl.completed;
+      state.todos = state.todos.map((el) => {
+        if (el.id === currentItem.id) {
+          return {
+            ...el,
+            completed: true,
+          };
+        }
+
+        return el;
+      });
     },
     returnStateTodoItem(state, currentItem) {
-      const targetEl = state.todos.filter((el) => el.id === currentItem.id)[0];
-      targetEl.completed = !targetEl.completed;
+      state.todos = state.todos.map((el) => {
+        if (el.id === currentItem.id) {
+          return {
+            ...el,
+            completed: false,
+          };
+        }
+
+        return el;
+      });
     },
-    /*clearNewTodo(state) {
-      state.newTodo = '';
-    },*/
   },
   actions: {
     addTodo({ commit }, item) {
@@ -80,8 +93,5 @@ export default new Vuex.Store({
     returnTodo({ commit }, item) {
       commit('returnStateTodoItem', item);
     },
-    /*clearTodo({ commit }) {
-      commit('clearTodoItem');
-    },*/
   },
 });

@@ -7,7 +7,7 @@ import NotFoundComponent from './views/404.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/',

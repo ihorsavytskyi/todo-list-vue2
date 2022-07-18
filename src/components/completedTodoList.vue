@@ -44,7 +44,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'StatusTodoList',
+  name: 'CompletedTodoList',
   computed: mapGetters(['getComplitedItems']),
   methods: {
     returnItem(todo) {

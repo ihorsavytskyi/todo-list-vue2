@@ -44,6 +44,11 @@ module.exports = {
         type: 'javascript/auto',
         loader: '@intlify/vue-i18n-loader',
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
   plugins: [

@@ -1,3 +1,16 @@
+<i18n>
+{
+  "en": {
+    "text1": "Add new todo item",
+    "button1": "Add"
+  },
+  "ua": {
+    "text1": "Додати новий запис",
+    "button1": "Додати"
+  }
+}
+</i18n>
+
 <template>
   <v-container>
       <v-row class="justify-start">
@@ -7,7 +20,11 @@
         md="8">
           <h3> {{ $t('text1') }}</h3>
           <v-form>
-            <v-text-field v-model="newTodoItem" label="New todo item" @keydown.enter="addTodo()">
+            <v-text-field
+              v-model.trim="newTodoItem"
+              label="New todo item"
+              @keydown.enter="addTodo()"
+              >
             </v-text-field>
           </v-form>
         </v-col>
@@ -25,24 +42,11 @@
     </v-container>
 </template>
 
-<i18n>
-{
-  "en": {
-    "text1": "Add new todo item",
-    "button1": "Add"
-  },
-  "ua": {
-    "text1": "Додати новий запис",
-    "button1": "Додати"
-  }
-}
-</i18n>
-
 <script>
 
 export default {
   name: 'NewTodoItem',
-  date() {
+  data() {
     return {
       newTodoItem: '',
     };

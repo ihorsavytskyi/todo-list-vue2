@@ -9,36 +9,8 @@
       </v-row>
     </v-container>
     <div class="todo-list" v-else>
-      <v-list v-for="todo in getTodoList" :key="todo.id">
-        <v-list-item>
-          <v-list-item-content class="pa-1">
-            <v-card class="mx-auto my-1" max-width="374">
-              <v-card-title>
-                {{ todo.name }}
-              </v-card-title>
-              <v-card-actions>
-                <v-btn class="ma-2" color="primary" dark @click="сomplete(todo)">
-                  {{ $t('button1') }}
-                  <v-icon dark right>
-                    mdi-checkbox-marked-circle
-                  </v-icon>
-                </v-btn>
-                <v-btn dark class="success" text @click="edit(todo)">
-                  {{ $t('button2') }}
-                  <v-icon dark right>
-                    mdi-pencil
-                </v-icon>
-                </v-btn>
-                <v-btn class="ma-2" color="red" dark @click="removeItem(todo)">
-                  {{ $t('button3') }}
-                  <v-icon dark right>
-                    mdi-cancel
-                  </v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-list-item-content>
-        </v-list-item>
+      <v-list>
+        <TodoItem v-for="todo in getTodoList" :key="todo.id" :data="todo"/>
       </v-list>
     </div>
   </div>
@@ -48,32 +20,26 @@
 {
   "en": {
     "text1": "Have to do",
-    "text2": "Sorry but todo list is empty",
-    "button1": "Done",
-    "button2": "Edit",
-    "button3": "Remove"
+    "text2": "Sorry but todo list is empty"
   },
   "ua": {
     "text1": "Необхідно зробити",
-    "text2": "Вибачте, але список завдань до виконання порожній",
-    "button1": "Виконано",
-    "button2": "Змінити",
-    "button3": "Видалити"
+    "text2": "Вибачте, але список завдань до виконання порожній"
   }
 }
 </i18n>
 
 <script>
 import { mapGetters } from 'vuex';
-//import TodoItem from '../components/todoItem.vue';
+import TodoItem from './todoItem.vue';
 
 export default {
   name: 'TodoList',
-  /*components: {
+  components: {
     TodoItem,
-  },*/
+  },
   computed: mapGetters(['getTodoList']),
-  methods: {
+  /*methods: {
     edit(todo) {
       console.log('edit :', todo.id);
     },
@@ -83,17 +49,17 @@ export default {
     сomplete(todo) {
       this.$store.dispatch('completedTodo', todo);
     },
-  },
+  },*/
 };
 </script>
 
 <style lang="less" scoped>
-  .todo-list {
+  .v-list {
     display: flex;
     flex-wrap: wrap;
     margin: 16px 0;
   }
-  .v-list {
+  .v-list-item {
     flex: 0 0 50%;
     .v-card {
       max-width: none!important;

@@ -1,3 +1,18 @@
+<i18n>
+{
+  "en": {
+    "button1": "Done",
+    "button2": "Edit",
+    "button3": "Remove"
+  },
+  "ua": {
+    "button1": "Виконано",
+    "button2": "Змінити",
+    "button3": "Видалити"
+  }
+}
+</i18n>
+
 <template>
   <v-list-item>
     <v-list-item-content class="pa-1">
@@ -5,9 +20,6 @@
         <v-card-title>
           {{ data.name }}
         </v-card-title>
-        <v-card-text>
-          {{ data.id }} - {{ data.completed }}
-        </v-card-text>
         <v-card-actions>
           <v-btn class="ma-2" color="primary" dark @click="сomplete()">
             {{ $t('button1') }}
@@ -33,23 +45,7 @@
   </v-list-item>
 </template>
 
-<i18n>
-{
-  "en": {
-    "button1": "Done",
-    "button2": "Edit",
-    "button3": "Remove"
-  },
-  "ua": {
-    "button1": "Виконано",
-    "button2": "Змінити",
-    "button3": "Видалити"
-  }
-}
-</i18n>
-
 <script>
-import { mapActions } from 'vuex';
 
 export default {
   name: 'TodoItem',
@@ -61,18 +57,18 @@ export default {
     },
   },
   methods: {
-    mapActions(['deleteTodo', 'completedTodo']),
-    /*edit() {
-      console.log('edit :', this.$props.data.id);
+    edit() {
+      console.log('edit :', this.$props.data);
     },
     removeItem() {
-      this.$store.dispatch('deleteTodo', this.$props.data.id);
+      console.log(this.$props.data);
+      this.$store.dispatch('deleteTodo', this.$props.data);
     },
     сomplete() {
-      console.log('complete :', this.$props.data.id, this.$props.data.completed);
-      //this.$store.dispatch('completedTodo', this.$props.data.id);
+      console.log('complete :', this.$props.data.id);
+      this.$store.dispatch('completedTodo', this.$props.data);
     },
-  },*/
+  },
 };
 </script>
 
