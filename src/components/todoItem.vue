@@ -16,22 +16,41 @@
 <template>
   <v-list-item>
     <v-list-item-content class="pa-1">
-      <v-card class="mx-auto my-1" max-width="374">
+      <v-card
+        class="mx-auto my-1"
+        max-width="374"
+      >
         <v-card-title>
           {{ data.name }}
         </v-card-title>
         <v-card-actions>
-          <v-btn class="ma-2" color="primary" dark @click="сomplete()">
+          <v-btn
+            class="ma-2"
+            color="primary"
+            dark
+            @click="сomplete()"
+          >
             {{ $t('button1') }}
-            <v-icon dark right>
+            <v-icon
+              dark
+              right
+            >
               mdi-checkbox-marked-circle
             </v-icon>
           </v-btn>
-          <v-btn dark class="success" text @click="edit()">
+          <v-btn
+            dark
+            class="success"
+            text
+            @click="edit()"
+          >
             {{ $t('button2') }}
-            <v-icon dark right>
+            <v-icon
+              dark
+              right
+            >
               mdi-pencil
-          </v-icon>
+            </v-icon>
           </v-btn>
           <v-btn class="ma-2" color="red" dark @click="removeItem()">
             {{ $t('button3') }}
@@ -51,21 +70,28 @@ export default {
   name: 'TodoItem',
   props: {
     data: {
-      id: Number,
-      name: String,
-      completed: Boolean,
+      type: Object,
+      default: function() {
+        return {
+          id: {type: Number, default: null},
+          name: {type: String, default: ''},
+          complited: {type: Boolean, default: false}
+        }
+      },
     },
   },
   methods: {
     edit() {
-      console.log('edit :', this.$props.data);
+      this.$emit('onEditItem', {
+        id: this.$props.id,
+        name: this.$props.name,
+        completed: this.$props.complited,
+      });
     },
     removeItem() {
-      console.log(this.$props.data);
       this.$store.dispatch('deleteTodo', this.$props.data);
     },
     сomplete() {
-      console.log('complete :', this.$props.data.id);
       this.$store.dispatch('completedTodo', this.$props.data);
     },
   },

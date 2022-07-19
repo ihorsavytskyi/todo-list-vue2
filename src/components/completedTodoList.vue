@@ -1,3 +1,16 @@
+<i18n>
+{
+  "en": {
+    "text1": "Completed",
+    "button1": "Return"
+  },
+  "ua": {
+    "text1": "Виконано",
+    "button1": "Повернути до виконання"
+  }
+}
+</i18n>
+
 <template>
   <div>
     <h3 v-if="getComplitedItems.length > 0">
@@ -26,19 +39,6 @@
     </div>
   </div>
 </template>
-
-<i18n>
-{
-  "en": {
-    "text1": "Completed",
-    "button1": "Return"
-  },
-  "ua": {
-    "text1": "Виконано",
-    "button1": "Повернути до виконання"
-  }
-}
-</i18n>
 
 <script>
 import { mapGetters } from 'vuex';

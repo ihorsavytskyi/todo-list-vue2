@@ -9,9 +9,6 @@ Vue.use(VueI18n);
 
 const i18n = new VueI18n({
   locale: 'ua',
-  messages: {
-    en: {},
-  },
 });
 
 new Vue({

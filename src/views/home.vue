@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <EditTodoItem />
     <NewTodoItem />
     <TodoList />
     <CompletedTodoList />
@@ -8,27 +9,36 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import EditTodoItem from '../components/editTodoItem.vue';
 import NewTodoItem from '../components/newTodoItem.vue';
 import TodoList from '../components/todoList.vue';
 import CompletedTodoList from '../components/completedTodoList.vue';
 
 export default {
   name: 'HomePage',
-  date() {
-    return {
-
-    };
-  },
   components: {
+    EditTodoItem,
     NewTodoItem,
     TodoList,
     CompletedTodoList,
   },
+  data() {
+    return {
+      todoItem: {
+        id: Number,
+        name: String,
+        completed: Boolean,
+      },
+    };
+  },
   computed: mapGetters(['getTodoList', 'getComplitedItems']),
   methods: {
-    edit(todo) {
-      console.log('edit :', todo.id);
-    },
+    /*editItem(data) {
+      console.log('edit is:', data);
+      this.todoItem.id = data.id;
+      this.todoItem.name = data.name;
+      this.todoItem.completed = data.completed;
+    },*/
     removeItem(todo) {
       this.$store.dispatch('deleteTodo', todo);
     },

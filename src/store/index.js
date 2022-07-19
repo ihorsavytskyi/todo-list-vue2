@@ -6,27 +6,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     todos: [
-      {
-        id: 1,
-        name: 'Action 1',
-        completed: false,
-      },
-      {
-        id: 2,
-        name: 'Action 2',
-        completed: false,
-      },
-      {
-        id: 3,
-        name: 'Action 3',
-        completed: false,
-      },
-      {
-        id: 4,
-        name: 'Action 4',
-        completed: true,
-      },
+      { id: 1, name: 'Action 1', completed: false },
+      { id: 2, name: 'Action 2', completed: false },
+      { id: 3, name: 'Action 3', completed: false },
+      { id: 4, name: 'Action 4', completed: true },
     ],
+    editableItemId: null,
+    isEditMode: false,
   },
   getters: {
     getTodoList(state) {
@@ -38,6 +24,9 @@ export default new Vuex.Store({
     getComplitedItems(state) {
       return state.todos.filter((todo) => !!todo.completed);
     },
+    getEditableItem(state) {
+      return state.todos.find((todo) => todo.id === state.editableItemId);
+    },
   },
   mutations: {
     addTodoItem(state, newItem) {
@@ -47,10 +36,20 @@ export default new Vuex.Store({
         complited: false,
       });
     },
-    updateTodoItem() {},
+    updateTodoItem(state, newValue) {
+      state.todos = state.todos.map((el) => {
+        if (el.id === newValue.id) {
+          return {
+            ...el,
+            name: newValue.name,
+          };
+        }
+
+        return el;
+      });
+    },
     deleteTodoItem(state, currentItem) {
-      const todoItemIndexToRemove = state.todos.findIndex((el) => el.id !== currentItem.id);
-      state.todos.splice(todoItemIndexToRemove, 1);
+      state.todos = state.todos.filter((el) => el.id !== currentItem.id);
     },
     completedTodoItem(state, currentItem) {
       state.todos = state.todos.map((el) => {
@@ -76,6 +75,12 @@ export default new Vuex.Store({
         return el;
       });
     },
+    defineEditableTodoItem(state, item) {
+      state.editableItemId = item;
+    },
+    switchEditMode(state) {
+      state.isEditMode = !state.isEditMode;
+    }
   },
   actions: {
     addTodo({ commit }, item) {
@@ -83,6 +88,7 @@ export default new Vuex.Store({
     },
     updateTodo({ commit }, item) {
       commit('updateTodoItem', item);
+      commit('switchEditMode');
     },
     deleteTodo({ commit }, item) {
       commit('deleteTodoItem', item);
@@ -92,6 +98,10 @@ export default new Vuex.Store({
     },
     returnTodo({ commit }, item) {
       commit('returnStateTodoItem', item);
+    },
+    turnOnEditMode({ commit }, item) {
+      commit('defineEditableTodoItem', item);
+      commit('switchEditMode');
     },
   },
 });

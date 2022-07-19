@@ -1,21 +1,3 @@
-<template>
-  <div>
-    <h3 v-if="getTodoList.length > 0">{{ $t('text1') }} : {{getTodoList.length}}</h3>
-    <v-container no-gutters v-if="getTodoList.length === 0">
-      <v-row>
-        <v-col>
-          <p>{{ $t('text2') }}</p>
-        </v-col>
-      </v-row>
-    </v-container>
-    <div class="todo-list" v-else>
-      <v-list>
-        <TodoItem v-for="todo in getTodoList" :key="todo.id" :data="todo"/>
-      </v-list>
-    </div>
-  </div>
-</template>
-
 <i18n>
 {
   "en": {
@@ -29,6 +11,38 @@
 }
 </i18n>
 
+<template>
+  <div>
+    <h3 v-if="getTodoList.length > 0">
+      {{ $t('text1') }} : {{ getTodoList.length }}
+    </h3>
+    <v-container
+      v-if="getTodoList.length === 0"
+      fluid
+      no-gutters
+    >
+      <v-row>
+        <v-col>
+          <p>{{ $t('text2') }}</p>
+        </v-col>
+      </v-row>
+    </v-container>
+    <div
+      v-else
+      class="todo-list"
+    >
+      <v-list>
+        <TodoItem
+          v-for="todo in getTodoList"
+          :key="todo.id"
+          :data="todo"
+          @editItem="onEditItem"
+        />
+      </v-list>
+    </div>
+  </div>
+</template>
+
 <script>
 import { mapGetters } from 'vuex';
 import TodoItem from './todoItem.vue';
@@ -38,18 +52,24 @@ export default {
   components: {
     TodoItem,
   },
+  data() {
+    return {
+      todoItem: {
+        id: Number,
+        name: String,
+        completed: Boolean,
+      },
+    };
+  },
   computed: mapGetters(['getTodoList']),
-  /*methods: {
-    edit(todo) {
-      console.log('edit :', todo.id);
+  methods: {
+    onEditItem(data) {
+      console.log('edit is:', data);
+      this.todoItem.id = data.id;
+      this.todoItem.name = data.name;
+      this.todoItem.completed = data.completed;
     },
-    removeItem(todo) {
-      this.$store.dispatch('deleteTodo', todo);
-    },
-    сomplete(todo) {
-      this.$store.dispatch('completedTodo', todo);
-    },
-  },*/
+  },
 };
 </script>
 

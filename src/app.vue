@@ -16,14 +16,14 @@ import FooterBar from './components/footer.vue';
 
 export default {
   name: 'App',
+  components: {
+    TopNavbar,
+    FooterBar,
+  },
   data() {
     return {
 
     };
-  },
-  components: {
-    TopNavbar,
-    FooterBar,
   },
 };
 </script>
@@ -31,7 +31,7 @@ export default {
 <!--<script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  
+
 })
 </script>-->
 
