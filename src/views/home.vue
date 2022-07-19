@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <EditTodoItem />
+    <EditTodoItem
+      v-if="getEditModeStatus"
+    />
     <NewTodoItem />
     <TodoList />
     <CompletedTodoList />
@@ -31,14 +33,8 @@ export default {
       },
     };
   },
-  computed: mapGetters(['getTodoList', 'getComplitedItems']),
+  computed: mapGetters(['getTodoList', 'getComplitedItems', 'getEditModeStatus']),
   methods: {
-    /*editItem(data) {
-      console.log('edit is:', data);
-      this.todoItem.id = data.id;
-      this.todoItem.name = data.name;
-      this.todoItem.completed = data.completed;
-    },*/
     removeItem(todo) {
       this.$store.dispatch('deleteTodo', todo);
     },

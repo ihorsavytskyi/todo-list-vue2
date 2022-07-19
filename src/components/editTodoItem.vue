@@ -2,11 +2,13 @@
 {
   "en": {
     "text1": "Edit todo item",
-    "button1": "Save"
+    "button1": "Save",
+    "button2": "Cancel"
   },
   "ua": {
     "text1": "Відредагувати запис",
-    "button1": "Зберегти"
+    "button1": "Зберегти",
+    "button2": "Відмінити"
   }
 }
 </i18n>
@@ -22,7 +24,12 @@
         <h3> {{ $t('text1') }}</h3>
         <v-form>
           <v-text-field
-            label="Edit todo item"
+            v-model="fieldValue"
+            :label="$t('text1')"
+            :rules="[rules.required, rules.counter]"
+            counter
+            maxlength="40"
+            @keydown.enter="update()"
           />
         </v-form>
       </v-col>
@@ -36,8 +43,17 @@
           rounded
           color="primary"
           dark
+          @click="update()"
         >
           {{ $t('button1') }}
+        </v-btn>
+        <v-btn
+          rounded
+          color="error"
+          dark
+          @click="closeEditMode()"
+        >
+          {{ $t('button2') }}
         </v-btn>
       </v-col>
     </v-row>
@@ -45,26 +61,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'EditTodoItem',
-  props: {
-    todoItem: {
-      type: Object,
-      default: function() {
-        return {
-          id: {type: Number, default: null},
-          name: {type: String, default: ''},
-          complited: {type: Boolean, default: false}
-        }
-      },
-    },
-  },
   data() {
     return {
+      fieldValue: '',
+      rules: {
+        required: (value) => !!value || 'Required.',
+        counter: (value) => value.length <= 20 || 'Max 20 characters',
+      },
     };
   },
-  method: {
-
+  mounted() {
+    this.fieldValue = this.getEditableItem();
+  },
+  methods: {
+    ...mapGetters(['getEditModeStatus', 'getEditableItem']),
+    update() {
+      this.$store.dispatch('updateTodo', this.fieldValue);
+    },
+    closeEditMode() {
+      this.fieldValue = '';
+      this.$store.dispatch('turnoffEditMode');
+    },
   },
 };
 </script>

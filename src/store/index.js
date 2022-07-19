@@ -25,7 +25,10 @@ export default new Vuex.Store({
       return state.todos.filter((todo) => !!todo.completed);
     },
     getEditableItem(state) {
-      return state.todos.find((todo) => todo.id === state.editableItemId);
+      return state.todos.find((todo) => todo.id === state.editableItemId).name;
+    },
+    getEditModeStatus(state) {
+      return state.isEditMode;
     },
   },
   mutations: {
@@ -38,10 +41,10 @@ export default new Vuex.Store({
     },
     updateTodoItem(state, newValue) {
       state.todos = state.todos.map((el) => {
-        if (el.id === newValue.id) {
+        if (el.id === state.editableItemId) {
           return {
             ...el,
-            name: newValue.name,
+            name: newValue,
           };
         }
 
@@ -78,8 +81,11 @@ export default new Vuex.Store({
     defineEditableTodoItem(state, item) {
       state.editableItemId = item;
     },
-    switchEditMode(state) {
-      state.isEditMode = !state.isEditMode;
+    onEditMode(state) {
+      state.isEditMode = true;
+    },
+    offEditMode(state) {
+      state.isEditMode = false;
     }
   },
   actions: {
@@ -88,7 +94,7 @@ export default new Vuex.Store({
     },
     updateTodo({ commit }, item) {
       commit('updateTodoItem', item);
-      commit('switchEditMode');
+      commit('offEditMode');
     },
     deleteTodo({ commit }, item) {
       commit('deleteTodoItem', item);
@@ -101,7 +107,10 @@ export default new Vuex.Store({
     },
     turnOnEditMode({ commit }, item) {
       commit('defineEditableTodoItem', item);
-      commit('switchEditMode');
+      commit('onEditMode');
+    },
+    turnoffEditMode({ commit }) {
+      commit('offEditMode');
     },
   },
 });

@@ -36,7 +36,6 @@
           v-for="todo in getTodoList"
           :key="todo.id"
           :data="todo"
-          @editItem="onEditItem"
         />
       </v-list>
     </div>
@@ -62,14 +61,7 @@ export default {
     };
   },
   computed: mapGetters(['getTodoList']),
-  methods: {
-    onEditItem(data) {
-      console.log('edit is:', data);
-      this.todoItem.id = data.id;
-      this.todoItem.name = data.name;
-      this.todoItem.completed = data.completed;
-    },
-  },
+  methods: {},
 };
 </script>
 

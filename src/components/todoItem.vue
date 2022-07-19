@@ -52,9 +52,17 @@
               mdi-pencil
             </v-icon>
           </v-btn>
-          <v-btn class="ma-2" color="red" dark @click="removeItem()">
+          <v-btn
+            class="ma-2"
+            color="red"
+            dark
+            @click="removeItem()"
+          >
             {{ $t('button3') }}
-            <v-icon dark right>
+            <v-icon
+              dark
+              right
+            >
               mdi-cancel
             </v-icon>
           </v-btn>
@@ -82,11 +90,7 @@ export default {
   },
   methods: {
     edit() {
-      this.$emit('onEditItem', {
-        id: this.$props.id,
-        name: this.$props.name,
-        completed: this.$props.complited,
-      });
+      this.$store.dispatch('turnOnEditMode', this.$props.data.id);
     },
     removeItem() {
       this.$store.dispatch('deleteTodo', this.$props.data);
