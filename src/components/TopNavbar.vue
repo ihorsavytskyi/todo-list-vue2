@@ -62,7 +62,6 @@
 
 <script>
 export default {
-  name: 'TopNavbar',
   data() {
     return {
       drawer: false,
@@ -74,16 +73,11 @@ export default {
         { id: 'en', name: 'EN' },
         { id: 'ua', name: 'UA' },
       ],
-      currentLocale: 'EN',
+      //currentLocale = 'EN',
     };
   },
-  methods: {
-    /*changeLang(value) {
-      console.log(value);
-      this.currentLocale = value.name;
-    },*/
-  },
 };
+
 </script>
 
 <style>

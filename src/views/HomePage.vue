@@ -11,10 +11,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import EditTodoItem from '../components/editTodoItem.vue';
-import NewTodoItem from '../components/newTodoItem.vue';
-import TodoList from '../components/todoList.vue';
-import CompletedTodoList from '../components/completedTodoList.vue';
+import EditTodoItem from '../components/EditTodoItem.vue';
+import NewTodoItem from '../components/NewTodoItem.vue';
+import TodoList from '../components/TodoList.vue';
+import CompletedTodoList from '../components/CompletedTodoList.vue';
 
 export default {
   name: 'HomePage',
