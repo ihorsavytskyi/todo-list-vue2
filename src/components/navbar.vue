@@ -60,29 +60,25 @@
   </nav>
 </template>
 
-<script>
-export default {
-  name: 'TopNavbar',
-  data() {
-    return {
-      drawer: false,
-      links: [
-        { text: 'Home', route: '/' },
-        { text: 'About', route: '/about' },
-      ],
-      langs: [
-        { id: 'en', name: 'EN' },
-        { id: 'ua', name: 'UA' },
-      ],
-      currentLocale: 'EN',
-    };
-  },
-  methods: {
-    /*changeLang(value) {
-      console.log(value);
-      this.currentLocale = value.name;
-    },*/
-  },
+<script lang="ts">
+import Vue from 'vue';
+import Component from 'vue-class-component';
+
+@Component({})
+export default class TopNavbar extends Vue {
+  drawer: boolean = false;
+
+  links: Array<object> = [
+    { text: 'Home', route: '/' },
+    { text: 'About', route: '/about' },
+  ];
+
+  langs: Array<object> = [
+    { id: 'en', name: 'EN' },
+    { id: 'ua', name: 'UA' },
+  ];
+
+  currentLocale: string = 'EN';
 };
 </script>
 

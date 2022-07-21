@@ -5,6 +5,16 @@
     "module": "es2015",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true
-  }
+    "experimentalDecorators": true,
+    "traceResolution": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "./src",
+      "./node_modules/@types"
+    ]
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.vue"
+  ]
 }
