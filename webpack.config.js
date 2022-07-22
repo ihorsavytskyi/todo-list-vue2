@@ -1,16 +1,27 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.js',
+    index: './src/index.ts',
+  },
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: { appendTsSuffixTo: [/.vue$/] },
+        exclude: '/node_modules/',
       },
       {
         test: /\.js$/,
@@ -44,12 +55,10 @@ module.exports = {
         type: 'javascript/auto',
         loader: '@intlify/vue-i18n-loader',
       },
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.vue'],
   },
   plugins: [
     new HtmlWebpackPlugin({

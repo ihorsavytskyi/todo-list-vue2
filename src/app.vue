@@ -10,11 +10,13 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
+
 import TopNavbar from './components/TopNavbar.vue';
 import FooterBar from './components/FooterBar.vue';
 
-export default {
+export default Vue.extend({
   name: 'App',
   components: {
     TopNavbar,
@@ -25,7 +27,7 @@ export default {
 
     };
   },
-};
+});
 </script>
 
 <!--<script lang="ts">

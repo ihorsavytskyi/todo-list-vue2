@@ -61,7 +61,9 @@
 </template>
 
 <script>
+
 export default {
+  name: 'TopNavbar',
   data() {
     return {
       drawer: false,
@@ -77,7 +79,6 @@ export default {
     };
   },
 };
-
 </script>
 
 <style>

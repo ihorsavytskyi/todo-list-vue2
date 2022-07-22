@@ -44,7 +44,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import TodoItem from './todoItem.vue';
+import TodoItem from './TodoItem.vue';
 
 export default {
   name: 'TodoList',

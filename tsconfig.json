@@ -5,6 +5,23 @@
     "module": "es2015",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true
-  }
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "./@types",
+      "./node_modules/@types"
+    ]
+  },
+  "include": [
+    "./**/*.js",
+    "./*.js",
+    "./**/*.ts",
+    "./**/*.vue",
+    "./*.vue"
+  ],
+  "exclude": [
+    "node_modules"
+  ],  
 }

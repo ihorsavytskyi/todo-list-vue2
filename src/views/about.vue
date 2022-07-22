@@ -3,15 +3,17 @@
     <v-row>
       <v-col
         cols="12"
-        >
+      >
         <h1>About us</h1>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
   name: 'AboutUs',
-};
+});
 </script>

@@ -10,6 +10,7 @@
 </template>
 
 <script>
+
 import { mapGetters } from 'vuex';
 import EditTodoItem from '../components/EditTodoItem.vue';
 import NewTodoItem from '../components/NewTodoItem.vue';
@@ -47,6 +48,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <style lang="less" scoped>

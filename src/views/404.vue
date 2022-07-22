@@ -5,8 +5,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'errorPage',
-};
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'ErrorPage',
+});
 </script>

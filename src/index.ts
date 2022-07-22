@@ -12,11 +12,10 @@ const i18n = new VueI18n({
 });
 
 new Vue({
-  el: '#app',
   router,
   store,
   vuetify,
   i18n,
   render:
-	  (h) => h(App),
-});
+    (h) => h(App),
+}).$mount('#app');
