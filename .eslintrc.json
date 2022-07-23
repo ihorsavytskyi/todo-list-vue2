@@ -26,6 +26,13 @@
             "error",
             "single"
         ],
-        "linebreak-style": 0
+        "linebreak-style": 0,
+        "eslint lines-between-class-members": [
+            "error", 
+            "always", 
+            { 
+                "exceptAfterSingleLine": true 
+            }
+        ]
     }
 }

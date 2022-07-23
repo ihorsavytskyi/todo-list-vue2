@@ -40,18 +40,20 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import { mapGetters } from 'vuex';
+import Todo from '../models/Todo';
 
-export default {
+export default Vue.extend({
   name: 'CompletedTodoList',
   computed: mapGetters(['getComplitedItems']),
   methods: {
-    returnItem(todo) {
+    returnItem(todo: Todo): void {
       this.$store.dispatch('returnTodo', todo);
     },
   },
-};
+});
 </script>
 
 <style lang="less" scoped>

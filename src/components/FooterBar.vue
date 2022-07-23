@@ -9,9 +9,10 @@
   </v-footer>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 
-export default ({
+export default Vue.extend({
   name: 'FooterBar',
 });
 </script>

@@ -50,22 +50,23 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 
-export default {
+export default Vue.extend({
   name: 'NewTodoItem',
   data() {
     return {
       newTodoItem: '',
       rules: {
-        required: (value) => !!value || 'Required.',
-        counter: (value) => value.length <= 20 || 'Max 20 characters',
+        required: (value: string) => !!value || 'Required.',
+        counter: (value: string) => value.length <= 20 || 'Max 20 characters',
       },
       isDisabled: true,
     };
   },
   watch: {
-    newTodoItem(value) {
+    newTodoItem(value: string): void {
       if (value.length > 0) {
         this.isDisabled = false;
       } else {
@@ -74,12 +75,12 @@ export default {
     },
   },
   methods: {
-    addTodo() {
+    addTodo(): void {
       if (this.newTodoItem.length) {
         this.$store.dispatch('addTodo', this.newTodoItem);
         this.newTodoItem = '';
       }
     },
   },
-};
+});
 </script>
