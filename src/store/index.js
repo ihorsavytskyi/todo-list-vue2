@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Todo from '../models/Todo';
 
 Vue.use(Vuex);
 
@@ -36,7 +37,7 @@ export default new Vuex.Store({
       state.todos.push({
         id: state.todos[state.todos.length - 1].id + 1,
         name: newItem,
-        complited: false,
+        completed: false,
       });
     },
     updateTodoItem(state, newValue) {

@@ -42,11 +42,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+
+import Vue from 'vue';
 import { mapGetters } from 'vuex';
 import TodoItem from './TodoItem.vue';
 
-export default {
+export default Vue.extend({
   name: 'TodoList',
   components: {
     TodoItem,
@@ -61,8 +63,7 @@ export default {
     };
   },
   computed: mapGetters(['getTodoList']),
-  methods: {},
-};
+});
 </script>
 
 <style lang="less" scoped>

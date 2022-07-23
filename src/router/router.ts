@@ -1,12 +1,12 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import VueRouter, { RouteConfig } from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 import About from '../views/About.vue';
 import NotFoundComponent from '../views/404.vue';
 
 Vue.use(VueRouter);
 
-const routes = [
+const routes: Array<RouteConfig> = [
   {
     path: '/',
     component: HomePage,
@@ -21,8 +21,6 @@ const routes = [
   },
 ];
 
-const router = new VueRouter({
+export default new VueRouter({
   routes,
 });
-
-export default router;
