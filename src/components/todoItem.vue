@@ -72,34 +72,36 @@
   </v-list-item>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
+import Todo from '../models/Todo';
 
-export default {
+export default Vue.extend({
   name: 'TodoItem',
   props: {
     data: {
-      type: Object,
-      default: function() {
+      type: Object as () => Todo,
+      default() {
         return {
-          id: {type: Number, default: null},
-          name: {type: String, default: ''},
-          complited: {type: Boolean, default: false}
-        }
+          id: { type: Number, default: null },
+          name: { type: String, default: '' },
+          complited: { type: Boolean, default: false },
+        };
       },
     },
   },
   methods: {
-    edit() {
-      this.$store.dispatch('turnOnEditMode', this.$props.data.id);
+    edit(): void {
+      this.$store.dispatch('turnOnEditMode', this.$props.data.id as Number);
     },
-    removeItem() {
-      this.$store.dispatch('deleteTodo', this.$props.data);
+    removeItem(): void {
+      this.$store.dispatch('deleteTodo', this.$props.data as Todo);
     },
-    сomplete() {
-      this.$store.dispatch('completedTodo', this.$props.data);
+    сomplete(): void {
+      this.$store.dispatch('completedTodo', this.$props.data as Todo);
     },
   },
-};
+});
 </script>
 
 <style scoped>

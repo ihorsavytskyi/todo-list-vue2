@@ -54,11 +54,11 @@ export default Vue.extend({
   },
   data() {
     return {
-      todoItem: {
+      /*todoItem: {
         id: Number,
         name: String,
         completed: Boolean,
-      },
+      },*/
     };
   },
   computed: mapGetters(['getTodoList']),
