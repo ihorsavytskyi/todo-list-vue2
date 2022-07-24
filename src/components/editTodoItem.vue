@@ -60,17 +60,18 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import { mapGetters } from 'vuex';
 
-export default {
+export default Vue.extend({
   name: 'EditTodoItem',
   data() {
     return {
       fieldValue: '',
       rules: {
-        required: (value) => !!value || 'Required.',
-        counter: (value) => value.length <= 20 || 'Max 20 characters',
+        required: (value: string) => !!value || 'Required.',
+        counter: (value: string) => value.length <= 20 || 'Max 20 characters',
       },
     };
   },
@@ -87,7 +88,7 @@ export default {
       this.$store.dispatch('turnoffEditMode');
     },
   },
-};
+});
 </script>
 
 <style>
