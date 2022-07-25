@@ -9,34 +9,36 @@
       />
       <v-toolbar-title>Todo</v-toolbar-title>
       <v-spacer />
-      <!--<v-menu offset-y>
-        <template
-          v-slot:activator="{ on, attrs }"
+      <div>        
+        <v-menu
+          top
+          :close-on-click="closeOnClick"
         >
-          <v-btn
-            v-model="lang.name"
-            color="primary"
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            {{ currentLocale.name }}
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item
-            v-for="(lang, index) in langs"
-            :key="index"
-          >
-            <v-list-item-title
-              v-model="lang.name"
-              @click="changeLang()"
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="primary"
+              dark
+              v-bind="attrs"
+              v-on="on"              
+            >              
+            {{ currentLang }}
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item
+              v-for="lang in langs"
+              :key="lang.id"
             >
-              {{ lang.name }}
-            </v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>-->
+              <v-list-item-title
+                @click="changeLocale(lang.id)"
+              >
+                {{ lang.name }}              
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>      
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
@@ -61,6 +63,7 @@
 </template>
 
 <script lang="ts">
+import { stringify } from 'json5';
 import Vue from 'vue';
 
 export default Vue.extend({
@@ -68,6 +71,8 @@ export default Vue.extend({
   data() {
     return {
       drawer: false,
+      currentLangId: 'en',
+      closeOnClick: true,
       links: [
         { text: 'Home', route: '/' },
         { text: 'About', route: '/about' },
@@ -77,6 +82,18 @@ export default Vue.extend({
         { id: 'ua', name: 'UA' },
       ],
     };
+  },
+  computed: {
+    currentLang() {
+      const langValue = this.langs.find((el) => el.id === this.currentLangId);
+      return langValue?.name;
+    },
+  },
+  methods: {
+    changeLocale(value: string): void {      
+      this.currentLangId = value;
+      this.$root.$i18n.locale = value;
+    }
   },
 });
 </script>
