@@ -13,11 +13,11 @@
 
 <template>
   <div>
-    <h3 v-if="getComplitedItems.length > 0">
-      {{ $t('text1') }} : {{ getComplitedItems.length }}
+    <h3 v-if="complitedItems.length > 0">
+      {{ $t('text1') }} : {{ complitedItems.length }}
     </h3>
     <div class="todo-list">
-      <v-list v-for="todo in getComplitedItems" :key="todo.id">
+      <v-list v-for="todo in complitedItems" :key="todo.id">
         <v-list-item>
           <v-list-item-content class="pa-1">
             <v-card class="mx-auto my-1" max-width="374">
@@ -47,7 +47,7 @@ import Todo from '../models/Todo';
 
 export default Vue.extend({
   name: 'CompletedTodoList',
-  computed: mapGetters(['getComplitedItems']),
+  computed: mapGetters(['complitedItems']),
   methods: {
     returnItem(todo: Todo): void {
       this.$store.dispatch('returnTodo', todo);

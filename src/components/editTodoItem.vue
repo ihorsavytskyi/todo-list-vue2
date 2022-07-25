@@ -76,10 +76,10 @@ export default Vue.extend({
     };
   },
   mounted() {
-    this.fieldValue = this.getEditableItem();
+    this.fieldValue = this.editableItem();
   },
   methods: {
-    ...mapGetters(['getEditModeStatus', 'getEditableItem']),
+    ...mapGetters(['editModeStatus', 'editableItem']),
     update() {
       this.$store.dispatch('updateTodo', this.fieldValue);
     },

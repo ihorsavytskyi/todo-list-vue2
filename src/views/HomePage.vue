@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <EditTodoItem
-      v-if="getEditModeStatus"
+      v-if="editModeStatus"
     />
     <NewTodoItem />
     <TodoList />
@@ -9,15 +9,15 @@
   </v-container>
 </template>
 
-<script>
-
+<script lang="ts">
+import Vue from 'vue';
 import { mapGetters } from 'vuex';
 import EditTodoItem from '../components/EditTodoItem.vue';
 import NewTodoItem from '../components/NewTodoItem.vue';
 import TodoList from '../components/TodoList.vue';
 import CompletedTodoList from '../components/CompletedTodoList.vue';
 
-export default {
+export default Vue.extend({
   name: 'HomePage',
   components: {
     EditTodoItem,
@@ -27,27 +27,12 @@ export default {
   },
   data() {
     return {
-      todoItem: {
-        id: Number,
-        name: String,
-        completed: Boolean,
-      },
+      
     };
   },
-  computed: mapGetters(['getTodoList', 'getComplitedItems', 'getEditModeStatus']),
-  methods: {
-    removeItem(todo) {
-      this.$store.dispatch('deleteTodo', todo);
-    },
-    сomplete(todo) {
-      this.$store.dispatch('completedTodo', todo);
-    },
-    addTodo() {
-      this.$store.dispatch('addTodo', this.newTodoItem);
-      this.newTodoItem = '';
-    },
-  },
-};
+  computed: mapGetters(['editModeStatus']),
+  
+});
 
 </script>
 

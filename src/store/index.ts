@@ -11,24 +11,25 @@ export default new Vuex.Store({
       { id: 2, name: 'Action 2', completed: false },
       { id: 3, name: 'Action 3', completed: false },
       { id: 4, name: 'Action 4', completed: true },
-    ],
+    ] as Todo[],
     editableItemId: null,
     isEditMode: false,
   },
   getters: {
-    getTodoList(state) {
+    todoList(state) {
       return state.todos.filter((todo) => !todo.completed);
     },
     thisTodo(state, todoId) {
       return state.todos.find((todo) => todo.id === todoId);
     },
-    getComplitedItems(state) {
+    complitedItems(state) {
       return state.todos.filter((todo) => !!todo.completed);
     },
-    getEditableItem(state) {
-      return state.todos.find((todo) => todo.id === state.editableItemId).name;
+    editableItem(state) {
+      let editableItem = state.todos.find((todo) => todo.id === state.editableItemId);
+      return editableItem?.name;
     },
-    getEditModeStatus(state) {
+    editModeStatus(state) {
       return state.isEditMode;
     },
   },

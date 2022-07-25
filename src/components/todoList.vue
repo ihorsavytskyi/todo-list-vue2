@@ -13,11 +13,11 @@
 
 <template>
   <div>
-    <h3 v-if="getTodoList.length > 0">
-      {{ $t('text1') }} : {{ getTodoList.length }}
+    <h3 v-if="todoList.length > 0">
+      {{ $t('text1') }} : {{ todoList.length }}
     </h3>
     <v-container
-      v-if="getTodoList.length === 0"
+      v-if="todoList.length === 0"
       fluid
       no-gutters
     >
@@ -33,7 +33,7 @@
     >
       <v-list>
         <TodoItem
-          v-for="todo in getTodoList"
+          v-for="todo in todoList"
           :key="todo.id"
           :data="todo"
         />
@@ -54,14 +54,10 @@ export default Vue.extend({
   },
   data() {
     return {
-      /*todoItem: {
-        id: Number,
-        name: String,
-        completed: Boolean,
-      },*/
+      
     };
   },
-  computed: mapGetters(['getTodoList']),
+  computed: mapGetters(['todoList']),
 });
 </script>
 

@@ -76,7 +76,6 @@ export default Vue.extend({
         { id: 'en', name: 'EN' },
         { id: 'ua', name: 'UA' },
       ],
-      //currentLocale = 'EN',
     };
   },
 });
