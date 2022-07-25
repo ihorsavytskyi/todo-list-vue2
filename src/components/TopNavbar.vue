@@ -28,12 +28,12 @@
           <v-list>
             <v-list-item
               v-for="lang in langs"
-              :key="lang.id"
+              :key="lang.langId"
             >
               <v-list-item-title
-                @click="changeLocale(lang.id)"
+                @click="changeLocale(lang.langId)"
               >
-                {{ lang.name }}              
+                {{ lang.title }}              
               </v-list-item-title>
             </v-list-item>
           </v-list>
@@ -49,12 +49,12 @@
       <v-list>
         <v-list-item
           v-for="link in links"
-          :key="link.text"
+          :key="link.title"
           router
-          :to="link.route"
+          :to="link.routeLink"
         >
           <v-list-item-action-text>
-            {{ link.text }}
+            {{ link.title }}
           </v-list-item-action-text>
         </v-list-item>
       </v-list>
@@ -63,8 +63,9 @@
 </template>
 
 <script lang="ts">
-import { stringify } from 'json5';
 import Vue from 'vue';
+import RouteItem from '../models/RouteItem';
+import LangItem from '../models/LangItem';
 
 export default Vue.extend({
   name: 'TopNavbar',
@@ -74,19 +75,19 @@ export default Vue.extend({
       currentLangId: 'en',
       closeOnClick: true,
       links: [
-        { text: 'Home', route: '/' },
-        { text: 'About', route: '/about' },
-      ],
+        { title: 'Home', routeLink: '/' },
+        { title: 'About', routeLink: '/about' },
+      ] as Array<RouteItem>,
       langs: [
-        { id: 'en', name: 'EN' },
-        { id: 'ua', name: 'UA' },
-      ],
+        { langId: 'en', title: 'EN' },
+        { langId: 'ua', title: 'UA' },
+      ] as Array<LangItem>,
     };
   },
   computed: {
     currentLang() {
-      const langValue = this.langs.find((el) => el.id === this.currentLangId);
-      return langValue?.name;
+      const langValue = this.langs.find((el) => el.langId === this.currentLangId);
+      return langValue?.title;
     },
   },
   methods: {
