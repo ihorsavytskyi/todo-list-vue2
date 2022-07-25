@@ -12,14 +12,31 @@
 </i18n>
 
 <template>
-  <v-container>
+  <v-container>    
     <v-row class="justify-start">
-      <v-col
+      <v-col 
+        cols="12"
+        v-if="showAddNewItem"        
+      >
+        <v-btn
+          class="mx-2"
+          fab
+          dark
+          color="indigo"
+          @click="showAddeNewItemField()"
+        >
+          <v-icon dark>
+            mdi-plus
+          </v-icon>
+        </v-btn>
+      </v-col>
+      <v-col 
+        v-if="!showAddNewItem"
         cols="12"
         sm="8"
         md="8"
       >
-        <h3> {{ $t('text1') }}</h3>
+        <h3> {{ $t('text1') }}</h3>        
         <v-form>
           <v-text-field
             v-model.trim="newTodoItem"
@@ -63,8 +80,9 @@ export default Vue.extend({
         counter: (value: string) => value.length <= 20 || 'Max 20 characters',
       },
       isDisabled: true,
+      showAddNewItem: true,
     };
-  },
+  },  
   watch: {
     newTodoItem(value: string): void {
       if (value.length > 0) {
@@ -72,15 +90,19 @@ export default Vue.extend({
       } else {
         this.isDisabled = true;
       }
-    },
+    }
   },
   methods: {
     addTodo(): void {
-      if (this.newTodoItem.length) {
+      if (this.newTodoItem.length) {        
         this.$store.dispatch('addTodo', this.newTodoItem);
-        this.newTodoItem = '';
+        this.newTodoItem = '';      
+        this.showAddNewItem = true;  
       }
     },
+    showAddeNewItemField(): void {
+      this.showAddNewItem = false;
+    }
   },
 });
 </script>

@@ -43,6 +43,7 @@
           rounded
           color="primary"
           dark
+          :disabled="isDisabled"
           @click="update()"
         >
           {{ $t('button1') }}
@@ -73,6 +74,7 @@ export default Vue.extend({
         required: (value: string) => !!value || 'Required.',
         counter: (value: string) => value.length <= 20 || 'Max 20 characters',
       },
+      isDisabled: true,
     };
   },
   mounted() {
@@ -86,6 +88,15 @@ export default Vue.extend({
     closeEditMode() {
       this.fieldValue = '';
       this.$store.dispatch('turnoffEditMode');
+    },
+  },
+  watch: {
+    fieldValue(value: string): void {
+      if (value.length > 0) {
+        this.isDisabled = false;
+      } else {
+        this.isDisabled = true;
+      }
     },
   },
 });
